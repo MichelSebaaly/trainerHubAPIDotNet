@@ -1,0 +1,17 @@
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\RepositoryContracts.deps.json
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\RepositoryContracts.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\RepositoryContracts.pdb
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\Data.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\ServiceContracts.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\ServiceContracts.pdb
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\bin\Debug\net8.0\Data.pdb
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.csproj.AssemblyReference.cache
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.AssemblyInfoInputs.cache
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.AssemblyInfo.cs
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.csproj.CoreCompileInputs.cache
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\Reposito.28D4BA81.Up2Date
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\refint\RepositoryContracts.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.pdb
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\ref\RepositoryContracts.dll
