@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -23,8 +24,18 @@ namespace Services
             _env = env;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task AddProgram(ProgramAddRequest request)
+        public async Task AddProgram(ProgramAddRequest request, string? role)
         {
+            if(request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if(!role.Equals("trainer"))
+            {
+                throw new UnauthorizedAccessException("You are not allowed to add a program!");
+            }
+
             string file_name = string.Empty;
             string photo_name = string.Empty;
             if (request.File_URL != null && request.File_URL.Length > 0)

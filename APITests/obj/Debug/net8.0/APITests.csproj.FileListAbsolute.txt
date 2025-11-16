@@ -151,3 +151,4 @@ C:\Users\miche\source\repos\TrainerHubAPI\APITests\bin\Debug\net8.0\Services.dll
 C:\Users\miche\source\repos\TrainerHubAPI\APITests\bin\Debug\net8.0\Services.pdb
 C:\Users\miche\source\repos\TrainerHubAPI\APITests\bin\Debug\net8.0\AutoFixture.dll
 C:\Users\miche\source\repos\TrainerHubAPI\APITests\bin\Debug\net8.0\Fare.dll
+C:\Users\miche\source\repos\TrainerHubAPI\APITests\obj\Debug\net8.0\APITests.sourcelink.json

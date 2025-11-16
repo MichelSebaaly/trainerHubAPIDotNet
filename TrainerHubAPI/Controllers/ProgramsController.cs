@@ -28,15 +28,15 @@ namespace TrainerHubAPI.Controllers
         [HttpPost("addProgram")]
         public async Task<IActionResult> AddProgram([FromForm] ProgramAddRequest request)
         {
-            Log.Debug(request.ToString());
             int trainerId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            string? role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             if (trainerId == 0)
             {
                 return Unauthorized("User ID not found in token.");
             }
             request.Trainer_Id = trainerId;
-            await _programsService.AddProgram(request);
+            await _programsService.AddProgram(request, role);
             return Ok("Program Added");
         }
         [Authorize]

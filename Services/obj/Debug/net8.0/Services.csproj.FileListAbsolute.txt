@@ -17,3 +17,4 @@ C:\Users\miche\source\repos\TrainerHubAPI\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\miche\source\repos\TrainerHubAPI\Services\obj\Debug\net8.0\ref\Services.dll
 C:\Users\miche\source\repos\TrainerHubAPI\Services\bin\Debug\net8.0\RepositoryContracts.dll
 C:\Users\miche\source\repos\TrainerHubAPI\Services\bin\Debug\net8.0\RepositoryContracts.pdb
+C:\Users\miche\source\repos\TrainerHubAPI\Services\obj\Debug\net8.0\Services.sourcelink.json
