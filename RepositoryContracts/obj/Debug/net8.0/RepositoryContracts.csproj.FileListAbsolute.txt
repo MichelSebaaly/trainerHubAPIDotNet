@@ -15,3 +15,4 @@ C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\R
 C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\refint\RepositoryContracts.dll
 C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.pdb
 C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\ref\RepositoryContracts.dll
+C:\Users\miche\source\repos\TrainerHubAPI\RepositoryContracts\obj\Debug\net8.0\RepositoryContracts.sourcelink.json
