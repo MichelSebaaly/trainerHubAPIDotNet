@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrainerHubAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6cf7831209a93f271b8bc1fd96c92893970e3d91")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrainerHubAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrainerHubAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
