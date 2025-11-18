@@ -9,6 +9,7 @@
       "APITests/1.0.0": {
         "dependencies": {
           "AutoFixture": "4.18.1",
+          "Data": "1.0.0",
           "FluentAssertions": "8.8.0",
           "Microsoft.NET.Test.Sdk": "17.8.0",
           "Moq": "4.20.72",

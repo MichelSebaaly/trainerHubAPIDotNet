@@ -26,7 +26,10 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UsersService>();
 builder.Services.AddScoped<IProgramsService, ProgramsService>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IWorkoutsService, WorkoutsService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IProgramsRepository, ProgramsRepository>();
+builder.Services.AddScoped<IWorkoutsRepository, WorkoutsRepository>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddEndpointsApiExplorer();

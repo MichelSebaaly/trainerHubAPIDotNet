@@ -8,6 +8,7 @@ namespace Data
         public AppDbContext(DbContextOptions options) : base(options) { }
         public DbSet<User> users { get; set; }
         public DbSet<Program> programs { get; set; }
+        public DbSet<Workout> workouts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -47,6 +48,25 @@ namespace Data
                 .WithMany()
                 .HasForeignKey(p => p.Trainer_Id)
                 .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Workout>(entity =>
+            {
+                entity.ToTable("workouts", "content");
+
+                entity.Property(e => e.Id).HasColumnName("id").IsRequired();
+                entity.Property(e => e.UserId).HasColumnName("user_id").IsRequired();
+                entity.Property(e => e.Title).HasColumnName("title").IsRequired();
+                entity.Property(e => e.Notes).HasColumnName("notes");
+                entity.Property(e => e.Duration).HasColumnName("duration");
+                entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
+                entity.Property(e => e.UpdatedAt).HasColumnName("updatedAt");
+
+                entity.HasOne(w => w.User)
+                .WithMany()
+                .HasForeignKey(w => w.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             });
         }
     }

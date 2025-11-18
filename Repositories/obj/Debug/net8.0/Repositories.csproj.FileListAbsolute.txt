@@ -17,3 +17,4 @@ C:\Users\miche\source\repos\TrainerHubAPI\Repositories\obj\Debug\net8.0\Reposito
 C:\Users\miche\source\repos\TrainerHubAPI\Repositories\obj\Debug\net8.0\refint\Repositories.dll
 C:\Users\miche\source\repos\TrainerHubAPI\Repositories\obj\Debug\net8.0\Repositories.pdb
 C:\Users\miche\source\repos\TrainerHubAPI\Repositories\obj\Debug\net8.0\ref\Repositories.dll
+C:\Users\miche\source\repos\TrainerHubAPI\Repositories\obj\Debug\net8.0\Repositories.sourcelink.json
