@@ -87,3 +87,4 @@ C:\Users\miche\source\repos\TrainerHubAPI\TrainerHubAPI\bin\Debug\net8.0\System.
 C:\Users\miche\source\repos\TrainerHubAPI\TrainerHubAPI\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\miche\source\repos\TrainerHubAPI\TrainerHubAPI\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\Users\miche\source\repos\TrainerHubAPI\TrainerHubAPI\obj\Debug\net8.0\TrainerHubAPI.sourcelink.json
+C:\Users\miche\source\repos\TrainerHubAPI\TrainerHubAPI\bin\Debug\net8.0\appsettings.Development.json

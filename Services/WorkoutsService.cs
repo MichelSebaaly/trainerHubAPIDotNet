@@ -1,8 +1,8 @@
 ﻿using RepositoryContracts;
 using ServiceContracts;
 using ServiceContracts.DTO;
-using System;
-using System.Collections.Generic;
+using Data.Entities;
+using Services.CustomExceptions;
 
 namespace Services
 {
@@ -15,9 +15,10 @@ namespace Services
             _workoutsRepository = workoutsRepository;
             _currentUserService = currentUserService;
         }
-        public Task AddWorkout(WorkoutAddRequest request)
+        public async Task AddWorkout(WorkoutAddRequest request)
         {
-            throw new NotImplementedException();
+            Workout workout = request.ToWorkout();
+            await _workoutsRepository.AddWorkout(workout);
         }
 
         public Task AddWorkoutDuration(TimeSpan duration)
@@ -30,9 +31,15 @@ namespace Services
             throw new NotImplementedException();
         }
 
-        public Task<List<WorkoutResponse>> GetAllWorkouts(int userId)
+        public async Task<List<WorkoutResponse>> GetAllWorkouts(int? userId)
         {
-            throw new NotImplementedException();
+            int? loggedInUser = _currentUserService.UserId;
+            if (loggedInUser != userId)
+            {
+                throw new ForbiddenException();
+            }
+            List<Workout> workout = await _workoutsRepository.GetAllWorkouts(userId);
+            return workout.Select(w => w.ToWorkoutResponse()).ToList();
         }
 
         public Task UpdateWorkoutNote(WorkoutUpdateRequest request)

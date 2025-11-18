@@ -25,9 +25,9 @@ namespace Repositories
             return true;
         }
 
-        public async Task<List<Workout>> GetAllWorkouts(int userId)
+        public async Task<List<Workout>> GetAllWorkouts(int? userId)
         {
-            return await _db.workouts.Where(w => w.Id == userId).ToListAsync();
+            return await _db.workouts.Where(w => w.UserId == userId).ToListAsync();
         }
 
         public async Task<Workout> GetWorkoutById(int id)

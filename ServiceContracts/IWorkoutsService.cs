@@ -9,7 +9,7 @@ namespace ServiceContracts
 {
     public interface IWorkoutsService
     {
-        public Task<List<WorkoutResponse>> GetAllWorkouts(int userId);
+        public Task<List<WorkoutResponse>> GetAllWorkouts(int? userId);
         public Task AddWorkout(WorkoutAddRequest request);
         public Task AddWorkoutDuration(TimeSpan duration);
         public Task UpdateWorkoutNote(WorkoutUpdateRequest request);

@@ -5,7 +5,7 @@ namespace RepositoryContracts
 {
     public interface IWorkoutsRepository
     {
-        public Task<List<Workout>> GetAllWorkouts(int userId);
+        public Task<List<Workout>> GetAllWorkouts(int? userId);
         public Task<Workout> GetWorkoutById(int id);
         public Task AddWorkout(Workout workout);
         public Task<bool> DeleteWorkout(Workout workout);

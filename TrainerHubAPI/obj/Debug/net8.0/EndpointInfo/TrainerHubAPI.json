@@ -429,6 +429,18 @@
           }
         }
       }
+    },
+    "/api/Workout/getAllWorkouts": {
+      "get": {
+        "tags": [
+          "Workout"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

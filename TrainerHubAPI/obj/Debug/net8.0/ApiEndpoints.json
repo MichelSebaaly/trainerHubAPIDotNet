@@ -248,5 +248,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TrainerHubAPI.Controllers.WorkoutController",
+    "Method": "GetAllWorkouts",
+    "RelativePath": "api/Workout/getAllWorkouts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
