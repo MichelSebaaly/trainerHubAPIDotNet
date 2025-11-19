@@ -17,8 +17,21 @@ namespace Services
         }
         public async Task AddWorkout(WorkoutAddRequest request)
         {
+            if(request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            int? userId = _currentUserService.UserId;
+            if (userId == null) 
+            {
+                throw new UnauthorizedAccessException("User is not authenticated");
+            }
+            request.userId = userId.Value;
+
             Workout workout = request.ToWorkout();
             await _workoutsRepository.AddWorkout(workout);
+            await _workoutsRepository.SaveChangesAsync();
         }
 
         public Task AddWorkoutDuration(TimeSpan duration)

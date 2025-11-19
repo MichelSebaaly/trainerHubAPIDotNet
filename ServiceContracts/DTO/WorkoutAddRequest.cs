@@ -10,7 +10,7 @@ namespace ServiceContracts.DTO
         public int userId { get; set; }
 
         [Required(ErrorMessage = "Please workout title is required")]
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; }
         public string? Notes { get; set; }
         public Workout ToWorkout()
         {

@@ -31,7 +31,7 @@ namespace APITests
 
         #region GetAllWorkouts
         [Fact]
-        public async Task GetAllWorkouts_WhenUserTriesToAccessAnotherUsersData_ThrowsForbiddenException ()
+        public async Task GetAllWorkouts_WhenUserTriesToAccessAnotherUsersData_ThrowsForbiddenException()
         {
             _currentUserServiceMock.Setup(x => x.UserId).Returns(5);
             Func<Task> action = async () =>
@@ -56,6 +56,60 @@ namespace APITests
             List<WorkoutResponse> workouts_from_server = await _workoutsService.GetAllWorkouts(5);
 
             workouts_from_server.Count.Should().Be(2);
+        }
+        #endregion
+        #region AddWorkout
+
+        [Fact]
+        public async Task AddWorkout_WhenRequestIsNull_ThrowsArgumentNullException()
+        {
+            WorkoutAddRequest request = null;
+
+            Func<Task> action = async () =>
+            {
+                await _workoutsService.AddWorkout(request);
+            };
+
+            await action.Should().ThrowAsync<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async Task AddWorkout_WhenUserIsNotAuthorized_ThrowUnAuthorizedAccessException()
+        {
+            _currentUserServiceMock.Setup(u => u.UserId).Returns((int?) null);
+
+            WorkoutAddRequest addRequest = new WorkoutAddRequest()
+            {
+                Title = "Test",
+                Notes = "Notes"
+            };
+
+            Func<Task> action = async () =>
+            {
+                await _workoutsService.AddWorkout(addRequest);
+            };
+
+            await action.Should().ThrowAsync<UnauthorizedAccessException>();
+        }
+
+        [Fact]
+        public async Task AddWorkout_WhenValidWorkout_Success()
+        {
+            _currentUserServiceMock.Setup(u => u.UserId).Returns(5);
+
+            WorkoutAddRequest addRequest = new WorkoutAddRequest()
+            {
+                Title = "Test",
+                Notes = "Notes"
+            };
+
+            await _workoutsService.AddWorkout(addRequest);
+
+            _workoutsRepoMock.Verify(repo => repo.AddWorkout(It.Is<Workout>(w =>
+            w.Title == "Test" &&
+            w.Notes == "Notes" &&
+            w.UserId == 5)), Times.Once);
+            _workoutsRepoMock.Verify(repo => repo.SaveChangesAsync(), Times.Once);
         }
         #endregion
     }

@@ -16,12 +16,10 @@ namespace Repositories
         public async Task AddWorkout(Workout workout)
         {
             _db.workouts.Add(workout);
-            await SaveChangesAsync();
         }
         public async Task<bool> DeleteWorkout(Workout workout)
         {
             _db.workouts.Remove(workout);
-            await SaveChangesAsync();
             return true;
         }
 
