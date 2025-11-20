@@ -17,13 +17,13 @@ namespace Services
         }
         public async Task AddWorkout(WorkoutAddRequest request)
         {
-            if(request == null)
+            if (request == null)
             {
                 throw new ArgumentNullException(nameof(request));
             }
 
             int? userId = _currentUserService.UserId;
-            if (userId == null) 
+            if (userId == null)
             {
                 throw new UnauthorizedAccessException("User is not authenticated");
             }
@@ -39,9 +39,27 @@ namespace Services
             throw new NotImplementedException();
         }
 
-        public Task DeleteWorkout(int workoutId)
+        public async Task<bool> DeleteWorkout(int workoutId)
         {
-            throw new NotImplementedException();
+            Workout workout = await _workoutsRepository.GetWorkoutById(workoutId);
+            if (workout == null)
+            {
+                throw new NotFoundException();
+            }
+            int? userId = _currentUserService.UserId;
+            if (workout.UserId != userId)
+            {
+                throw new ForbiddenException();
+            }
+            bool isDeleted = await _workoutsRepository.DeleteWorkout(workout);
+            if (isDeleted)
+            {
+                await _workoutsRepository.SaveChangesAsync();
+                return true;
+            }else
+            {
+                return false;
+            }
         }
 
         public async Task<List<WorkoutResponse>> GetAllWorkouts(int? userId)

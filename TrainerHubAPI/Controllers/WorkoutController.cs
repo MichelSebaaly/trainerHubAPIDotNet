@@ -57,5 +57,30 @@ namespace TrainerHubAPI.Controllers
                 return Forbid(ex.Message);
             }
         }
+
+        [HttpDelete("deleteWorkout/{workoutId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteWorkout(int workoutId)
+        {
+            try
+            {
+                bool isDeleted = await _workoutsService.DeleteWorkout(workoutId);
+                if (isDeleted)
+                {
+                    return NoContent();
+                } else
+                {
+                    return StatusCode(500, "Failed To Delete Workout");
+                }
+            }
+            catch (ForbiddenException ex)
+            {
+                return Forbid();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

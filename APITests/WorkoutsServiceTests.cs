@@ -112,5 +112,84 @@ namespace APITests
             _workoutsRepoMock.Verify(repo => repo.SaveChangesAsync(), Times.Once);
         }
         #endregion
+        #region DeleteWorkout
+        [Fact]
+        public async Task DeleteWorkout_WhenWorkoutNotFound_ThrowsNotFoundException()
+        {
+            int workoutId = 1;
+            _workoutsRepoMock.Setup(repo => repo.GetWorkoutById(It.IsAny<int>())).ReturnsAsync((Workout)null);
+
+            Func<Task> action = async () =>
+            {
+                await _workoutsService.DeleteWorkout(workoutId);
+            };
+
+            await action.Should().ThrowAsync<NotFoundException>();
+        }
+
+        [Fact]
+        public async Task DeleteWorkout_WhenUserDeletingOthersWorkouts_ThrowsForbiddenException()
+        {
+            int workoutId = 1;
+            _currentUserServiceMock.Setup(x => x.UserId).Returns(14);
+
+            _workoutsRepoMock.Setup(repo => repo.GetWorkoutById(It.IsAny<int>())).ReturnsAsync(new Workout()
+            {
+                Id = workoutId,
+                UserId = 10,
+                Title = "Full Body",
+                Notes = "Next Time better",
+                Duration = new TimeSpan(1, 20, 10),
+            });
+
+            Func<Task> action = async () =>
+            {
+                await _workoutsService.DeleteWorkout(workoutId);
+            };
+
+            await action.Should().ThrowAsync<ForbiddenException>();
+        }
+
+        [Fact]
+        public async Task DeleteWorkout_WhenRepositoryFails_ReturnsFalse()
+        {
+            int workoutId = 1;
+            _currentUserServiceMock.Setup(x => x.UserId).Returns(14);
+
+            _workoutsRepoMock.Setup(repo => repo.GetWorkoutById(workoutId))
+                .ReturnsAsync(new Workout { Id = workoutId, UserId = 14 });
+
+            _workoutsRepoMock.Setup(repo => repo.DeleteWorkout(It.IsAny<Workout>()))
+                .ReturnsAsync(false);
+
+            bool result = await _workoutsService.DeleteWorkout(workoutId);
+
+            result.Should().BeFalse();
+            _workoutsRepoMock.Verify(repo => repo.SaveChangesAsync(), Times.Never);
+        }
+
+
+        [Fact]
+        public async Task DeleteWorkout_WhenProperDetails_Success()
+        {
+            int workoutId = 1;
+            _currentUserServiceMock.Setup(x => x.UserId).Returns(14);
+            _workoutsRepoMock.Setup(repo => repo.GetWorkoutById(It.IsAny<int>())).ReturnsAsync(new Workout()
+            {
+                Id = workoutId,
+                UserId = 14,
+                Title = "Full Body",
+                Notes = "Next Time better",
+                Duration = new TimeSpan(1,20,10),
+            });
+
+            _workoutsRepoMock.Setup(repo => repo.DeleteWorkout(It.IsAny<Workout>())).ReturnsAsync(true);
+
+            bool isDeleted = await _workoutsService.DeleteWorkout(workoutId);
+            
+            isDeleted.Should().BeTrue();
+            _workoutsRepoMock.Verify(repo => repo.SaveChangesAsync(), Times.Once);
+        }
+        #endregion
     }
 }

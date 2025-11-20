@@ -14,6 +14,6 @@ namespace ServiceContracts
         public Task AddWorkoutDuration(TimeSpan duration);
         public Task UpdateWorkoutNote(WorkoutUpdateRequest request);
         public Task UpdateWorkoutTitle(WorkoutUpdateRequest request);
-        public Task DeleteWorkout(int workoutId);
+        public Task<bool> DeleteWorkout(int workoutId);
     }
 }
