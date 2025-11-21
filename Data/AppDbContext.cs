@@ -58,7 +58,7 @@ namespace Data
                 entity.Property(e => e.UserId).HasColumnName("user_id").IsRequired();
                 entity.Property(e => e.Title).HasColumnName("title").IsRequired();
                 entity.Property(e => e.Notes).HasColumnName("notes");
-                entity.Property(e => e.Duration).HasColumnName("duration");
+                entity.Property(e => e.Duration).HasColumnName("duration").HasColumnType("interval");
                 entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
                 entity.Property(e => e.UpdatedAt).HasColumnName("updatedAt");
 

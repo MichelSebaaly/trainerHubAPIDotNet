@@ -11,7 +11,7 @@ namespace ServiceContracts
     {
         public Task<List<WorkoutResponse>> GetAllWorkouts(int? userId);
         public Task AddWorkout(WorkoutAddRequest request);
-        public Task AddWorkoutDuration(TimeSpan duration);
+        public Task AddWorkoutDuration(int workoutId, WorkoutAddDurationRequest request);
         public Task UpdateWorkoutNote(WorkoutUpdateRequest request);
         public Task UpdateWorkoutTitle(WorkoutUpdateRequest request);
         public Task<bool> DeleteWorkout(int workoutId);

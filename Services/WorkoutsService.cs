@@ -34,9 +34,28 @@ namespace Services
             await _workoutsRepository.SaveChangesAsync();
         }
 
-        public Task AddWorkoutDuration(TimeSpan duration)
+        public async Task AddWorkoutDuration(int workoutId, WorkoutAddDurationRequest request)
         {
-            throw new NotImplementedException();
+            int? userId = _currentUserService.UserId;
+            Workout workout = await _workoutsRepository.GetWorkoutById(workoutId);
+            if(workout == null)
+            {
+                throw new NotFoundException();
+            }
+            if (workout.UserId != userId)
+            {
+                throw new ForbiddenException();
+            }
+            if (request.StartTime == DateTime.MinValue)
+            {
+                throw new ArgumentException();
+            }
+            if(request.StartTime > request.EndTime)
+            {
+                throw new InvalidOperationException();
+            }
+            workout.Duration = request.EndTime - request.StartTime;
+            await _workoutsRepository.SaveChangesAsync();
         }
 
         public async Task<bool> DeleteWorkout(int workoutId)

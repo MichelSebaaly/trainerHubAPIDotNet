@@ -9,6 +9,7 @@ using Serilog;
 using ServiceContracts;
 using Services;
 using System.Text;
+using TrainerHubAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,9 +57,10 @@ builder.Services.AddAuthentication(options =>
 });
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.Console()
+    .MinimumLevel.Information()
     .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.Seq("http://localhost:5341")
     .CreateLogger();
 
 // Replace default logging
@@ -73,6 +75,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCorrelationMiddleware();
+app.UseExceptionHandlingMiddleware();
 app.UseAuthentication();
 app.UseAuthorization();
 

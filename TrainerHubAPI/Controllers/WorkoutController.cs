@@ -25,17 +25,9 @@ namespace TrainerHubAPI.Controllers
         public async Task<IActionResult> GetAllWorkouts()
         {
             int? userId = _currentUserService.UserId;
-            
-            try
-            {
-                List<WorkoutResponse> workouts = await _workoutsService.GetAllWorkouts(userId);
-                
-                return Ok(workouts);
-            }
-            catch (ForbiddenException ex) 
-            {
-                return Forbid(ex.Message);
-            }
+            List<WorkoutResponse> workouts = await _workoutsService.GetAllWorkouts(userId);
+            return Ok(workouts);
+
         }
 
         [HttpPost("addWorkout")]
@@ -43,44 +35,30 @@ namespace TrainerHubAPI.Controllers
 
         public async Task<IActionResult> AddWorkout(WorkoutAddRequest request)
         {
-            try
-            {
-                await _workoutsService.AddWorkout(request);
-                return Ok("Workout addedd");
-            }
-            catch (ArgumentNullException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Forbid(ex.Message);
-            }
+            await _workoutsService.AddWorkout(request);
+            return Ok("Workout addedd");
         }
 
         [HttpDelete("deleteWorkout/{workoutId}")]
         [Authorize]
         public async Task<IActionResult> DeleteWorkout(int workoutId)
         {
-            try
+            bool isDeleted = await _workoutsService.DeleteWorkout(workoutId);
+            if (isDeleted)
             {
-                bool isDeleted = await _workoutsService.DeleteWorkout(workoutId);
-                if (isDeleted)
-                {
-                    return NoContent();
-                } else
-                {
-                    return StatusCode(500, "Failed To Delete Workout");
-                }
+                return NoContent();
             }
-            catch (ForbiddenException ex)
+            else
             {
-                return Forbid();
+                return StatusCode(500, "Failed To Delete Workout");
             }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+        }
+        [HttpPatch("addWorkoutDuration/{workoutId}")]
+        [Authorize]
+        public async Task<IActionResult> AddWorkoutDuration(int workoutId, WorkoutAddDurationRequest request)
+        {
+            await _workoutsService.AddWorkoutDuration(workoutId, request);
+            return Ok("Workout Finished");
         }
     }
 }
